@@ -1,0 +1,47 @@
+Vagrant.configure("2") do |config|
+	config.vm.provider "virtualbox" do |vb|
+		vb.linked_clone = true
+	end
+
+	config.vm.define "Host1" do |host1|
+		host1.vm.box = "rysDebian"
+		host1.vm.hostname = "Host1"
+		host1.vm.network "private_network", ip: "192.168.1.1", virtualbox__intnet: "red1"
+		host1.vm.provider "virtualbox" do |v|
+			v.name = "Host 1"
+			v.gui = true
+		end
+		host1.vm.provision "shell", inline: <<-SHELL
+			# sudo ifconfig enp0s3 down || No se puede desactivar el adaptador NAT porque si no la conexión SSH deja de funcionar y Vagrant se cuelga
+			sudo service network-manager stop
+			# sudo route add default gw 192.168.1.10 dev enp0s8
+		SHELL
+	end
+	config.vm.define "NIDS" do |nids|
+		nids.vm.box = "rysDebian"
+		nids.vm.hostname = "Host1"
+		nids.vm.network "private_network", ip: "192.168.1.2", virtualbox__intnet: "red1"
+		nids.vm.provider "virtualbox" do |v|
+			v.name = "NIDS"
+			v.gui = true
+			v.customize ["modifyvm", :id,"--nicpromisc2", "allow-vms"]
+		end
+		nids.vm.provision "shell", inline: <<-SHELL
+			# sudo ifconfig enp0s3 down || No se puede desactivar el adaptador NAT porque si no la conexión SSH deja de funcionar y Vagrant se cuelga
+			sudo service network-manager stop
+			sudo route add default gw 192.168.1.10 dev enp0s8
+		SHELL
+	end
+	config.vm.define "kali" do |kali|
+		kali.vm.box = "rysKali"
+		kali.vm.hostname = "kali"
+		kali.vm.network "private_network", ip: "192.168.1.3", virtualbox__intnet: "red1"
+		kali.vm.provider "virtualbox" do |v|
+			v.name = "Kali"
+			v.gui = true
+		end
+		kali.vm.provision "shell", inline: <<-SHELL
+			sudo iptables -A OUTPUT -p udp --dport 53 -j DROP
+		SHELL
+	end
+end

@@ -1,0 +1,27 @@
+Vagrant.configure("2") do |config|
+	config.vm.provider "virtualbox" do |vb|
+		vb.linked_clone = true
+	end
+
+	config.vm.define "ServidorHTTPS" do |servidorhttps|
+		servidorhttps.vm.box = "rysDebian"
+		servidorhttps.vm.hostname = "ServidorHTTPS"
+		servidorhttps.vm.network "private_network", ip: "192.168.1.20", virtualbox__intnet: "red1"
+		servidorhttps.vm.provider "virtualbox" do |v|
+			v.name = "Servidor HTTPS"
+			v.gui = true
+		end
+		host1.vm.provision "shell", inline: <<-SHELL
+			sudo service network-manager stop
+		SHELL
+	end
+	config.vm.define "Kali" do |kali|
+		kali.vm.box = "rysKali"
+		kali.vm.hostname = "Kali"
+		kali.vm.network "private_network", ip: "192.168.1.3", virtualbox__intnet: "red1"
+		kali.vm.provider "virtualbox" do |v|
+			v.name = "Kali"
+			v.gui = true
+		end
+	end
+end
