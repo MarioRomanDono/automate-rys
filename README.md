@@ -4,8 +4,13 @@ El propósito de este repositorio es facilitar una serie de herramientas, script
 
 Esta necesidad surge de que, en todas las prácticas, se debe desplegar una infraestructura de máquinas virtuales con casi las mismas características, perdiendo un tiempo en una tarea repetitiva que puede ser automatizada para así dedicar más tiempo al contenido de la práctica en sí.
 
-Por el momento, solo contiene un archivo, `configurarRed.sh`, un script interactivo de Bash que reduce el tiempo necesario a la hora de modificar la configuración de red de las máquinas virtuales.
+Esta tarea de automatización se ha llevado a cabo con la herramienta [Vagrant](https://www.vagrantup.com/). Existen diez carpetas en el repositorio, una por cada práctica, y cada una de ellas contiene un Vagrantfile que describe la arquitectura virtual utilizada para la práctica. Para desplegarla, solamente hay que ejecutar `vagrant up`. Las boxes utilizadas en las prácticas se pueden encontrar [aquí](https://drive.google.com/drive/folders/1z1nq-RbXiokPNQfdvKvDrL3-QvlYQfO7?usp=sharing).
 
-No obstante, el objetivo final es disponer de archivos que puedan ser utilizados por herramientas como Vagrant o Terraform para automatizar completamente el despliegue de la infraestructura. A su vez, la configuración de red se definirá mediante scripts o herramientas como Ansible.
+El repositorio también contiene otro archivo, `configurarRed.sh`, un script interactivo de Bash que reduce el tiempo necesario a la hora de modificar la configuración de red de las máquinas virtuales.
 
-Todos los aportes son bienvenidos, y todo el código estará licenciado con la licencia del MIT para que pueda ser utilizado por cualquier persona libremente con cualquier propósito.
+Todos los scripts y archivos de este repositorio pueden ser utilizados por cualquier persona libremente con cualquier propósito. Asimismo, cualquier aporte es bienvenido.
+
+## TODO
+
+- Crear un manual de usuario / wiki que describa los pasos que se deben seguir para crear la arquitectura de cada práctica.
+- Modificar los scripts de provisión en los Vagrantfile, reemplazando comandos obsoletos como `route` o `ipconfig` por los correspondientes de la suite `ip`.
