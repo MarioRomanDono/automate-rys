@@ -4,7 +4,7 @@ El propósito de este repositorio es facilitar una serie de herramientas, script
 
 Esta necesidad surge de que, en todas las prácticas, se debe desplegar una infraestructura de máquinas virtuales con casi las mismas características, perdiendo un tiempo en una tarea repetitiva que puede ser automatizada para así dedicar más tiempo al contenido de la práctica en sí.
 
-Esta tarea de automatización se ha llevado a cabo con la herramienta [Vagrant](https://www.vagrantup.com/). Existen diez carpetas en el repositorio, una por cada práctica, y cada una de ellas contiene un Vagrantfile que describe la arquitectura virtual utilizada para la práctica. Para desplegarla, solamente hay que ejecutar `vagrant up`. Las boxes utilizadas en las prácticas se pueden encontrar [aquí](https://drive.google.com/drive/folders/1z1nq-RbXiokPNQfdvKvDrL3-QvlYQfO7?usp=sharing).
+Esta tarea de automatización se ha llevado a cabo con la herramienta [Vagrant](https://www.vagrantup.com/). Existen diez carpetas en el repositorio, una por cada práctica, y cada una de ellas contiene un Vagrantfile que describe la arquitectura virtual utilizada para la práctica. Para desplegarla, solamente hay que ejecutar `vagrant up`. Las boxes utilizadas en las prácticas se pueden encontrar [aquí](https://app.vagrantup.com/marioromandono).
 
 El repositorio también contiene otro archivo, `configurarRed.sh`, un script interactivo de Bash que reduce el tiempo necesario a la hora de modificar la configuración de red de las máquinas virtuales.
 

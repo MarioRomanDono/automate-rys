@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
 	end
 
 	config.vm.define "Servidor" do |servidor|
-		servidor.vm.box = "rysDebian"
+		servidor.vm.box = "marioromandono/RySDebian"
 		servidor.vm.hostname = "Servidor"
 		servidor.vm.network "private_network", ip: "192.168.1.4", virtualbox__intnet: "red1"
 		servidor.vm.provider "virtualbox" do |v|
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 		SHELL
 	end
 	config.vm.define "Kali" do |kali|
-		kali.vm.box = "rysKali"
+		kali.vm.box = "marioromandono/RySKali"
 		kali.vm.hostname = "Kali"
 		kali.vm.network "private_network", ip: "192.168.1.3", virtualbox__intnet: "red1"
 		kali.vm.provider "virtualbox" do |v|

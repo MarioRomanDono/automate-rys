@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
 	end
 
 	config.vm.define "Host1" do |host1|
-		host1.vm.box = "rysDebian"
+		host1.vm.box = "marioromandono/RySDebian"
 		host1.vm.hostname = "Host1"
 		host1.vm.network "private_network", ip: "192.168.1.1", virtualbox__intnet: "red1"
 		host1.vm.provider "virtualbox" do |v|
@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 		SHELL
 	end
 	config.vm.define "NIDS" do |nids|
-		nids.vm.box = "rysDebian"
+		nids.vm.box = "marioromandono/RySDebian"
 		nids.vm.hostname = "Host1"
 		nids.vm.network "private_network", ip: "192.168.1.2", virtualbox__intnet: "red1"
 		nids.vm.provider "virtualbox" do |v|
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 		SHELL
 	end
 	config.vm.define "kali" do |kali|
-		kali.vm.box = "rysKali"
+		kali.vm.box = "marioromandono/RySKali"
 		kali.vm.hostname = "kali"
 		kali.vm.network "private_network", ip: "192.168.1.3", virtualbox__intnet: "red1"
 		kali.vm.provider "virtualbox" do |v|
